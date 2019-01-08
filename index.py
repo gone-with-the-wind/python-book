@@ -1,27 +1,14 @@
 # -*- coding: utf-8 -*-
 
 
-class Student(object):
-  def __init__(self,name,gender):
-    self.name=name
-    self.__gender=gender
-  def get_gender(self):
-  	return self.__gender
-  def set_gender(self,gender):
-    self.__gender=gender
+from urllib import request
 
-
-
-# 测试:
-bart = Student('Bart', 'male')
-if bart.get_gender() != 'male':
-    print('0000!')
-else:
-    bart.set_gender('female')
-    if bart.get_gender() != 'female':
-        print('0000!')
-    else:
-        print('1111!')
+with request.urlopen('https://api.douban.com/v2/book/2129650') as f:
+    data = f.read()
+    print('Status:', f.status, f.reason)
+    for k, v in f.getheaders():
+        print('%s: %s' % (k, v))
+    print('Data:', data.decode('utf-8'))
  
 
 
