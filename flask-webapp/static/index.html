@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+ <script src="/static/jquery.min.js"></script>
+    <script type="text/javascript">
+   function copyText()
+{
+      $.ajax({
+            url : "/login?aaa=1234", 
+            data:{"username":'aaa',"password":'123'},
+            dataType : 'json',
+            type:'POST', 
+          
+            success : function(data) {  
+                if(data.result==1) {
+                    location.reload();
+                } else { 
+                    alert(data.message);
+                } 
+            },
+            error : function(e) {
+                alert("出现错误 ，请重试");
+            }
+        });
+}
+  </script>
+</head>
+<body>
+  <input  type="text">
+  <input   type="password">
+  <button onclick="copyText()">按钮</button>
+  <form action="Upload" method="post" enctype="multipart/form-data">
+    <input id="File1" name="fileupload" type="file" value="" /><input id="" type="submit" value="上传" />
+</form>
+
+
+</body>
+</html>
